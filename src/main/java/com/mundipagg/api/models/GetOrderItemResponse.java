@@ -29,6 +29,7 @@ public class GetOrderItemResponse
     private String code;
     private DateTime createdAt;
     private DateTime updatedAt;
+    private String status;
     /** GETTER
      * Id
      */
@@ -193,4 +194,19 @@ public class GetOrderItemResponse
         this.updatedAt = value;
     }
 
+    /** GETTER
+     * TODO: Write general description for this method
+     */
+    @JsonGetter("status")
+    public String getStatus ( ) {
+        return this.status;
+    }
+
+    /** SETTER
+     * TODO: Write general description for this method
+     */
+    @JsonSetter("status")
+    public void setStatus (String value) {
+        this.status = value;
+    }
 }
