@@ -939,7 +939,7 @@ public class CustomersController extends BaseController {
                 final String customerId,
                 final CreateCardRequest request,
                 final String idempotencyKey
-    ) throws Throwable {
+    ) throws IOException, APIException {
 
         HttpRequest _request = _buildCreateCardRequest(customerId, request, idempotencyKey);
         HttpResponse _response = getClientInstance().executeAsString(_request);
