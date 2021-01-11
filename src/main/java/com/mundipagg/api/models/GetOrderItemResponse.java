@@ -10,18 +10,25 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mundipagg.api.DateTimeHelper;
+import org.joda.time.DateTime;
 
 @JsonInclude(Include.ALWAYS)
 public class GetOrderItemResponse 
         implements java.io.Serializable {
     private static final long serialVersionUID = 1248361567937746779L;
     private String id;
+    private String type;
     private int amount;
     private String description;
     private int quantity;
     private GetSellerResponse getSellerResponse;
     private String category;
     private String code;
+    private DateTime createdAt;
+    private DateTime updatedAt;
     /** GETTER
      * Id
      */
@@ -57,19 +64,35 @@ public class GetOrderItemResponse
     /** GETTER
      * TODO: Write general description for this method
      */
-    @JsonGetter("description")
-    public String getDescription ( ) { 
-        return this.description;
+    @JsonGetter("type")
+    public String getType ( ) {
+        return this.type;
     }
     
     /** SETTER
      * TODO: Write general description for this method
      */
+    @JsonSetter("type")
+    public void setType (String value) {
+        this.type = value;
+    }
+
+    /** GETTER
+     * TODO: Write general description for this method
+     */
+    @JsonGetter("description")
+    public String getDescription ( ) {
+        return this.description;
+    }
+
+    /** SETTER
+     * TODO: Write general description for this method
+     */
     @JsonSetter("description")
-    public void setDescription (String value) { 
+    public void setDescription (String value) {
         this.description = value;
     }
- 
+
     /** GETTER
      * TODO: Write general description for this method
      */
@@ -133,5 +156,41 @@ public class GetOrderItemResponse
     public void setCode (String value) { 
         this.code = value;
     }
- 
+
+    /** GETTER
+     * TODO: Write general description for this method
+     */
+    @JsonGetter("created_at")
+    @JsonSerialize(using= DateTimeHelper.Rfc8601DateTimeSerializer.class)
+    public DateTime getCreatedAt ( ) {
+        return this.createdAt;
+    }
+
+    /** SETTER
+     * TODO: Write general description for this method
+     */
+    @JsonSetter("created_at")
+    @JsonDeserialize(using=DateTimeHelper.Rfc8601DateTimeDeserializer.class)
+    public void setCreatedAt (DateTime value) {
+        this.createdAt = value;
+    }
+
+    /** GETTER
+     * TODO: Write general description for this method
+     */
+    @JsonGetter("updated_at")
+    @JsonSerialize(using=DateTimeHelper.Rfc8601DateTimeSerializer.class)
+    public DateTime getUpdatedAt ( ) {
+        return this.updatedAt;
+    }
+
+    /** SETTER
+     * TODO: Write general description for this method
+     */
+    @JsonSetter("updated_at")
+    @JsonDeserialize(using=DateTimeHelper.Rfc8601DateTimeDeserializer.class)
+    public void setUpdatedAt (DateTime value) {
+        this.updatedAt = value;
+    }
+
 }

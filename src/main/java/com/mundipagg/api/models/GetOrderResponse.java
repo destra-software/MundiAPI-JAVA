@@ -21,12 +21,14 @@ public class GetOrderResponse
     private static final long serialVersionUID = 6882688645881334535L;
     private String id;
     private String code;
+    private int amount;
     private String currency;
     private List<GetOrderItemResponse> items;
     private GetCustomerResponse customer;
     private String status;
     private DateTime createdAt;
     private DateTime updatedAt;
+    private DateTime closedAt;
     private List<GetChargeResponse> charges;
     private String invoiceUrl;
     private GetShippingResponse shipping;
@@ -68,7 +70,23 @@ public class GetOrderResponse
     public void setCode (String value) { 
         this.code = value;
     }
- 
+
+    /** GETTER
+     * TODO: Write general description for this method
+     */
+    @JsonGetter("amount")
+    public int getAmount ( ) {
+        return this.amount;
+    }
+
+    /** SETTER
+     * TODO: Write general description for this method
+     */
+    @JsonSetter("amount")
+    public void setAmount (int value) {
+        this.amount = value;
+    }
+
     /** GETTER
      * TODO: Write general description for this method
      */
@@ -168,7 +186,25 @@ public class GetOrderResponse
     public void setUpdatedAt (DateTime value) { 
         this.updatedAt = value;
     }
- 
+
+    /** GETTER
+     * TODO: Write general description for this method
+     */
+    @JsonGetter("closed_at")
+    @JsonSerialize(using=DateTimeHelper.Rfc8601DateTimeSerializer.class)
+    public DateTime getClosedAt ( ) {
+        return this.closedAt;
+    }
+
+    /** SETTER
+     * TODO: Write general description for this method
+     */
+    @JsonSetter("closed_at")
+    @JsonDeserialize(using=DateTimeHelper.Rfc8601DateTimeDeserializer.class)
+    public void setClosedAt (DateTime value) {
+        this.closedAt = value;
+    }
+
     /** GETTER
      * TODO: Write general description for this method
      */

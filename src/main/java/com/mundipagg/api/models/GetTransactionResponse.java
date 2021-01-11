@@ -39,6 +39,7 @@ import org.joda.time.DateTime;
 public class GetTransactionResponse 
         implements java.io.Serializable {
     private static final long serialVersionUID = -1432529684995687665L;
+    private String operationKey;
     private String gatewayId;
     private int amount;
     private String status;
@@ -58,16 +59,32 @@ public class GetTransactionResponse
     /** GETTER
      * Gateway transaction id
      */
+    @JsonGetter("operation_key")
+    public String getOperationKey ( ) {
+        return this.operationKey;
+    }
+
+    /** SETTER
+     * Gateway transaction id
+     */
+    @JsonSetter("operation_key")
+    public void setOperationKey (String value) {
+        this.operationKey = value;
+    }
+
+    /** GETTER
+     * Gateway transaction id
+     */
     @JsonGetter("gateway_id")
-    public String getGatewayId ( ) { 
+    public String getGatewayId ( ) {
         return this.gatewayId;
     }
-    
+
     /** SETTER
      * Gateway transaction id
      */
     @JsonSetter("gateway_id")
-    public void setGatewayId (String value) { 
+    public void setGatewayId (String value) {
         this.gatewayId = value;
     }
  
